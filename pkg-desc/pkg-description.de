@@ -1,0 +1,5 @@
+Fügt dem Bearbeiten-Menü einen Menüpunkt zur Vereinheitlichung von Leerzeichen innerhalb einer Calc-Tabelle hinzu.
+
+ 1. Ersetzt Tabulatoren und Zeilenumbrüche durch Leerzeichen
+ 2. Entfernt Leerzeichen am Anfang und Ende einer Zelle
+ 3. Zieht aufeinanderfolgende Leerzeichen zu einem zusammen

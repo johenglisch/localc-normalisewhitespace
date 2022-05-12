@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE script:module PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "module.dtd">
+<script:module xmlns:script="http://openoffice.org/2000/script" script:name="NormaliseWhitespace" script:language="StarBasic" script:moduleType="normal">REM  *****  BASIC  *****
+Option Explicit
+
+
+Sub Main
+	Dim doc As Object, sheet As Object
+	Dim used_area As Object, ranges As Object, iter As Object
+	Dim cell As Object, val As String
+
+	Let doc = ThisComponent
+	Let sheet = doc.CurrentController.ActiveSheet
+
+	Let used_area = UsedArea(sheet)
+	Let ranges = doc.createInstance(&quot;com.sun.star.sheet.SheetCellRanges&quot;)
+	ranges.insertByName(&quot;&quot;, used_area)
+	Let iter = ranges.Cells.CreateEnumeration
+	Do While iter.hasMoreElements
+		Rem warning: docs say empty cells are not traversed
+		Let cell = iter.NextElement
+		Let val = cell.String
+		cell.String = NormaliseValue(val)
+	Loop
+End Sub
+
+
+Rem Return range of the entire used area of a spread sheet
+Function UsedArea(sheet As Object) As Object
+	Dim cursor As Object
+
+	Let cursor = sheet.createCursorByRange(sheet.getCellRangeByName(&quot;A1&quot;))
+	cursor.gotoEndOfUsedArea(True)
+	UsedArea = sheet.getCellRangeByName(cursor.AbsoluteName)
+End Function
+
+
+Rem Normalise white space of a single string
+Function NormaliseValue(value As String) As String
+	Dim words As Variant, word As String
+	Dim filtered_words As Variant, i As Integer
+
+	Rem replace tabs with spaces
+	Let words = Split(value, Chr(9))
+	Let value = Join(words, &quot; &quot;)
+	Rem replace newlines with spaces
+	Let words = Split(value, Chr(10))
+	Let value = Join(words, &quot; &quot;)
+	Rem replace carriage returns with spaces
+	Let words = Split(value, Chr(13))
+	Let value = Join(words, &quot; &quot;)
+
+	Let words = Split(value, &quot; &quot;)
+	Rem there must be a better way to filter an array…
+	Rem this can&apos;t be it...
+	Let i = 0
+	ReDim filtered_words(UBound(words(), 1))
+	For Each word In words:
+		If word &lt;&gt; &quot;&quot; Then
+			Let filtered_words(i) = Trim(word)
+			Let i = i + 1
+		End If
+	Next
+	ReDim Preserve filtered_words(i)
+	Let value = Join(filtered_words, &quot; &quot;)
+
+	NormaliseValue = Trim(value)
+End Function
+
+</script:module>

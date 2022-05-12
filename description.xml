@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<description
+  xmlns="http://openoffice.org/extensions/description/2006"
+  xmlns:dep="http://openoffice.org/extensions/description/2006"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+    <identifier value="de.johannes-englisch.NormaliseWhitespace" />
+    <version value="1.0"/>
+    <display-name>
+      <name>Normalise Whitespace</name>
+      <name lang="de">Leerzeichenvereinheitlichung</name>
+    </display-name>
+    <icon>
+      <default xlink:href="icons/normalise-whitespace-logo.png" />
+    </icon>
+    <registration>
+      <simple-license  accept-by="admin" default-license-id="CC0" suppress-on-update="true" >
+        <license-text xlink:href="registration/license.txt" lang="en" license-id="CC0" />
+      </simple-license>
+    </registration>
+    <publisher>
+      <name xlink:href="johannes.englisch@t-online.de">Johannes Englisch</name>
+    </publisher>
+</description>

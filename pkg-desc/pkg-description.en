@@ -1,0 +1,5 @@
+Add an item to the Edit menu for normalising whitespace in a Calc spreadsheet.
+
+ 1. Replace tabs and newlines with spaces
+ 2. Remove leading and trailing white space
+ 3. Consolidate spaces to one space each
