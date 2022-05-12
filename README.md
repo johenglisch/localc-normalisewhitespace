@@ -17,6 +17,11 @@ but this probably works on other OS's and newer LibreOffice releases as well.
 If anyone knows if this thing works with older versions of LibreOffice, let me
 know.
 
+## How to use
+
+Go to the `Edit` menu in the menu bar and click `Normalise Whitespace`.  The
+menu item should be directly under `Search & Replace`.
+
 ## Installation
 
 Download the extension from the Github release page and open it with
